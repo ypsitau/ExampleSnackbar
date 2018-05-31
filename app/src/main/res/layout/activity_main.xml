@@ -20,7 +20,10 @@
 		android:id="@+id/editText_text"
 		android:layout_width="0dp"
 		android:layout_height="wrap_content"
-		android:text="Hello World"
+		android:text="Message Text"
+		android:inputType="text"
+		android:maxLines="1"
+		android:selectAllOnFocus="true"
 		app:layout_constraintBaseline_toBaselineOf="@+id/textView_label_Text"
 		app:layout_constraintLeft_toRightOf="@+id/textView_label_Text"
 		app:layout_constraintRight_toRightOf="parent" />
@@ -30,7 +33,7 @@
 		android:layout_width="80sp"
 		android:layout_height="wrap_content"
 		android:text="Type"
-		android:layout_marginTop="24dp"
+		android:layout_marginTop="32dp"
 		app:layout_constraintTop_toBottomOf="@+id/textView_label_Text"
 		app:layout_constraintLeft_toLeftOf="parent" />
 
@@ -64,7 +67,7 @@
 		android:layout_width="80sp"
 		android:layout_height="wrap_content"
 		android:text="Duration"
-		android:layout_marginTop="24dp"
+		android:layout_marginTop="32dp"
 		app:layout_constraintTop_toBottomOf="@+id/textView_label_Type"
 		app:layout_constraintLeft_toLeftOf="parent" />
 
@@ -93,98 +96,158 @@
 
 	</RadioGroup>
 
-	<TextView
-		android:id="@+id/textView_label_GravityH"
-		android:layout_width="80sp"
+	<android.support.constraint.ConstraintLayout
+		android:id="@+id/layout_settingsForSnackbar"
+		android:layout_width="0dp"
 		android:layout_height="wrap_content"
-		android:text="Gravity-H"
-		android:layout_marginTop="24dp"
+		android:layout_marginTop="32dp"
 		app:layout_constraintTop_toBottomOf="@+id/textView_label_Duration"
-		app:layout_constraintLeft_toLeftOf="parent" />
+		app:layout_constraintLeft_toLeftOf="parent"
+		app:layout_constraintRight_toRightOf="parent">
 
-	<RadioGroup
-		android:id="@+id/radioGroup_gravityH"
-		android:layout_width="wrap_content"
+		<TextView
+			android:id="@+id/textView_label_Action"
+			android:layout_width="80sp"
+			android:layout_height="wrap_content"
+			android:text="Action"
+			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintLeft_toLeftOf="parent" />
+
+		<CheckBox
+			android:id="@+id/checkBox_action"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:checked="true"
+			app:layout_constraintBaseline_toBaselineOf="@+id/textView_label_Action"
+			app:layout_constraintLeft_toRightOf="@+id/textView_label_Action" />
+
+		<EditText
+			android:id="@+id/editText_action"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:text="Action Text"
+			android:inputType="text"
+			android:maxLines="1"
+			android:selectAllOnFocus="true"
+			app:layout_constraintBaseline_toBaselineOf="@+id/checkBox_action"
+			app:layout_constraintLeft_toRightOf="@+id/checkBox_action"
+			app:layout_constraintRight_toRightOf="parent" />
+
+	</android.support.constraint.ConstraintLayout>
+
+	<android.support.constraint.ConstraintLayout
+		android:id="@+id/layout_settingsForToast"
+		android:layout_width="0dp"
 		android:layout_height="wrap_content"
-		android:orientation="horizontal"
-		app:layout_constraintTop_toTopOf="@+id/textView_label_GravityH"
-		app:layout_constraintBottom_toBottomOf="@+id/textView_label_GravityH"
-		app:layout_constraintLeft_toRightOf="@+id/textView_label_GravityH">
+		android:layout_marginTop="32dp"
+		app:layout_constraintTop_toBottomOf="@+id/layout_settingsForSnackbar"
+		app:layout_constraintLeft_toLeftOf="parent">
 
-		<RadioButton
-			android:id="@+id/radioButton_gravityH_left"
+		<TextView
+			android:id="@+id/textView_label_GravityH"
+			android:layout_width="80sp"
+			android:layout_height="wrap_content"
+			android:text="Gravity-Horz"
+			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintLeft_toLeftOf="parent" />
+
+		<RadioGroup
+			android:id="@+id/radioGroup_gravityH"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:text="Left"
-			android:checked="true" />
+			android:orientation="horizontal"
+			app:layout_constraintTop_toTopOf="@+id/textView_label_GravityH"
+			app:layout_constraintBottom_toBottomOf="@+id/textView_label_GravityH"
+			app:layout_constraintLeft_toRightOf="@+id/textView_label_GravityH">
 
-		<RadioButton
-			android:id="@+id/radioButton_gravityH_center"
+			<RadioButton
+				android:id="@+id/radioButton_gravityH_left"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Left" />
+
+			<RadioButton
+				android:id="@+id/radioButton_gravityH_center"
+				android:layout_marginLeft="16dp"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Center"
+				android:checked="true" />
+
+			<RadioButton
+				android:id="@+id/radioButton_gravityH_right"
+				android:layout_marginLeft="16dp"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Right"/>
+
+		</RadioGroup>
+
+		<TextView
+			android:id="@+id/textView_label_GravityV"
+			android:layout_width="80sp"
+			android:layout_height="wrap_content"
+			android:text="Gravity-Vert"
+			android:layout_marginTop="32dp"
+			app:layout_constraintTop_toBottomOf="@+id/textView_label_GravityH"
+			app:layout_constraintLeft_toLeftOf="parent" />
+
+		<RadioGroup
+			android:id="@+id/radioGroup_gravityV"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:text="Center"
-			android:checked="true" />
+			android:orientation="horizontal"
+			app:layout_constraintTop_toTopOf="@+id/textView_label_GravityV"
+			app:layout_constraintBottom_toBottomOf="@+id/textView_label_GravityV"
+			app:layout_constraintLeft_toRightOf="@+id/textView_label_GravityV">
 
-		<RadioButton
-			android:id="@+id/radioButton_gravityH_right"
-			android:layout_marginLeft="16dp"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="Right"/>
+			<RadioButton
+				android:id="@+id/radioButton_gravityV_top"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Top" />
 
-	</RadioGroup>
+			<RadioButton
+				android:id="@+id/radioButton_gravityV_center"
+				android:layout_marginLeft="16dp"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Center"
+				android:checked="true" />
 
-	<TextView
-		android:id="@+id/textView_label_GravityV"
-		android:layout_width="80sp"
-		android:layout_height="wrap_content"
-		android:text="Gravity-V"
-		android:layout_marginTop="24dp"
-		app:layout_constraintTop_toBottomOf="@+id/textView_label_GravityH"
-		app:layout_constraintLeft_toLeftOf="parent" />
+			<RadioButton
+				android:id="@+id/radioButton_gravityV_bottom"
+				android:layout_marginLeft="16dp"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Bottom"/>
 
+		</RadioGroup>
 
-	<RadioGroup
-		android:id="@+id/radioGroup_gravityV"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:orientation="horizontal"
-		app:layout_constraintTop_toTopOf="@+id/textView_label_GravityV"
-		app:layout_constraintBottom_toBottomOf="@+id/textView_label_GravityV"
-		app:layout_constraintLeft_toRightOf="@+id/textView_label_GravityV">
+	</android.support.constraint.ConstraintLayout>
 
-		<RadioButton
-			android:id="@+id/radioButton_gravityV_top"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="Top"
-			android:checked="true" />
+	<EditText
+		android:id="@+id/editText_log"
+		android:layout_width="0dp"
+		android:layout_height="0dp"
+		android:focusable="false"
+		android:textIsSelectable="true"
+		android:textSize="12sp"
+		android:background="#eeeeff"
+		android:layout_marginTop="32dp"
+		android:gravity="top"
+		app:layout_constraintTop_toBottomOf="@+id/layout_settingsForToast"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintLeft_toLeftOf="parent"
+		app:layout_constraintRight_toRightOf="parent" />
 
-		<RadioButton
-			android:id="@+id/radioButton_gravityV_center"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="Center"
-			android:checked="true" />
-
-		<RadioButton
-			android:id="@+id/radioButton_gravityV_bottom"
-			android:layout_marginLeft="16dp"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="Bottom"/>
-
-	</RadioGroup>
-
-	<Button
+	<android.support.design.widget.FloatingActionButton
 		android:id="@+id/button_popup"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:text="Popup!"
-		android:textAllCaps="false"
-		app:layout_constraintBottom_toBottomOf="parent"
-		app:layout_constraintLeft_toLeftOf="parent"
 		app:layout_constraintRight_toRightOf="parent"
-		app:layout_constraintTop_toTopOf="parent" />
+		app:layout_constraintBottom_toBottomOf="parent"
+		android:layout_margin="32dp"
+		app:srcCompat="@android:drawable/ic_dialog_info" />
 
 </android.support.constraint.ConstraintLayout>
