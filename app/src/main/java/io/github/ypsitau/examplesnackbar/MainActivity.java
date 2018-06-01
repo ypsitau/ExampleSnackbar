@@ -1,6 +1,8 @@
 package io.github.ypsitau.examplesnackbar;
 
+import android.animation.LayoutTransition;
 import android.app.Activity;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +17,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
+	private ConstraintLayout rootLayout;
 	private EditText editText_text;
 	private RadioGroup radioGroup_type;
 	private RadioGroup radioGroup_duration;
@@ -31,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
 		final Activity activity = this;
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		rootLayout = findViewById(R.id.rootLayout);
 		editText_text = findViewById(R.id.editText_text);
 		radioGroup_type = findViewById(R.id.radioGroup_type);
 		radioGroup_duration = findViewById(R.id.radioGroup_duration);
@@ -42,6 +46,19 @@ public class MainActivity extends AppCompatActivity {
 		layout_settingsForSnackbar = findViewById(R.id.layout_settingsForSnackbar);
 		layout_settingsForToast = findViewById(R.id.layout_settingsForToast);
 		editText_log = findViewById(R.id.editText_log);
+		LayoutTransition layoutTransition = new LayoutTransition();
+		layoutTransition.addTransitionListener(new LayoutTransition.TransitionListener() {
+			@Override
+			public void startTransition(LayoutTransition transition, ViewGroup container, View view, int transitionType) {
+				//printf("startTransition %d\n", transitionType);
+			}
+
+			@Override
+			public void endTransition(LayoutTransition transition, ViewGroup container, View view, int transitionType) {
+				//printf("endTransition %d\n", transitionType);
+			}
+		});
+		rootLayout.setLayoutTransition(layoutTransition);
 		radioGroup_type.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -52,6 +69,13 @@ public class MainActivity extends AppCompatActivity {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 				updateViewStatus();
+			}
+		});
+		editText_log.setOnLongClickListener(new View.OnLongClickListener() {
+			@Override
+			public boolean onLongClick(View v) {
+				editText_log.setText("");
+				return true;
 			}
 		});
 		floatingActionButton_popup.setOnClickListener(new View.OnClickListener() {
@@ -71,8 +95,8 @@ public class MainActivity extends AppCompatActivity {
 	private void updateViewStatus() {
 		int id = radioGroup_type.getCheckedRadioButtonId();
 		if (id == R.id.radioButton_type_snackbar) {
-			layout_settingsForSnackbar.setVisibility(View.VISIBLE);
 			layout_settingsForToast.setVisibility(View.GONE);
+			layout_settingsForSnackbar.setVisibility(View.VISIBLE);
 		} else { // if (id == R.id.radioButton_type_toast)
 			layout_settingsForSnackbar.setVisibility(View.GONE);
 			layout_settingsForToast.setVisibility(View.VISIBLE);
@@ -98,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
 		} else { // if (id == R.id.radioButton_duration_short)
 			duration = Snackbar.LENGTH_SHORT;
 		}
-		Snackbar snackbar = Snackbar.make(findViewById(R.id.rootLayout), text, duration);
+		Snackbar snackbar = Snackbar.make(rootLayout, text, duration);
 		if (checkBox_action.isChecked()) {
 			String textAction = editText_action.getText().toString();
 			snackbar.setAction(textAction, new View.OnClickListener() {

@@ -5,7 +5,6 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:id="@+id/rootLayout"
-	android:animateLayoutChanges="true"
 	tools:context=".MainActivity">
 
 	<TextView
@@ -234,7 +233,7 @@
 		android:focusable="false"
 		android:textIsSelectable="true"
 		android:textSize="12sp"
-		android:background="#eeeeff"
+		android:background="#cccce1"
 		android:layout_marginTop="32dp"
 		android:gravity="top"
 		app:layout_constraintTop_toBottomOf="@+id/layout_settingsForToast"
