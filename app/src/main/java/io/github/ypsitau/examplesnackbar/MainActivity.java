@@ -47,17 +47,6 @@ public class MainActivity extends AppCompatActivity {
 		layout_settingsForToast = findViewById(R.id.layout_settingsForToast);
 		editText_log = findViewById(R.id.editText_log);
 		LayoutTransition layoutTransition = new LayoutTransition();
-		layoutTransition.addTransitionListener(new LayoutTransition.TransitionListener() {
-			@Override
-			public void startTransition(LayoutTransition transition, ViewGroup container, View view, int transitionType) {
-				//printf("startTransition %d\n", transitionType);
-			}
-
-			@Override
-			public void endTransition(LayoutTransition transition, ViewGroup container, View view, int transitionType) {
-				//printf("endTransition %d\n", transitionType);
-			}
-		});
 		rootLayout.setLayoutTransition(layoutTransition);
 		radioGroup_type.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 			@Override
